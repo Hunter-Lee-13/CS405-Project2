@@ -211,6 +211,10 @@ public class ContigousMemoryAllocator {
 	                    part.setLength(part.getLength() + nextPart.getLength());
 	                    // Remove the next partition from the list
 	                    partList.remove(j);
+	                    //checks to see if the nextfit index is out of bounds
+	                    if(nextFitStartIndex >= partList.size()) {
+	                    	nextFitStartIndex = partList.size()-1;
+	                    }
 	                    // Update the end address
 	                    endAddr = part.getBase() + part.getLength();
 	                } else {
@@ -224,7 +228,7 @@ public class ContigousMemoryAllocator {
 	}
 
 	//main method to drive the program
-	public static void main(String[] atgs) {
+	public static void main(String[] args) {
 		//makes variables to store the info off the txt file
 		int MEMORY_MAX = 0;
         int PROC_SIZE_MAX = 0;
